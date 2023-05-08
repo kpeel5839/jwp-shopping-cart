@@ -19,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 class ProductServiceTest {
@@ -64,9 +65,9 @@ class ProductServiceTest {
     @Test
     @DisplayName("존재하는 product 를 수정할 때에는 예외가 발생하지 않는다.")
     void modifyByIdSuccess() {
-//        ProductDto productDto = new ProductDto("재연", 10000, "재연씨");
-//        given(productDao.updateById(1L, product)).willReturn(1);
-//        assertDoesNotThrow(() -> productService.modifyById(1L, productDto));
+        ProductDto productDto = new ProductDto("재연", 10000, "재연씨");
+        given(productDao.updateById(any(), any())).willReturn(1);
+        assertDoesNotThrow(() -> productService.modifyById(1L, productDto));
     }
 
     @Test
